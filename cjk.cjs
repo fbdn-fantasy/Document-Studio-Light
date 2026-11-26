@@ -1,0 +1,24 @@
+'use strict';
+const fs=require('node:fs/promises'),path=require('node:path');
+const root=path.join(__dirname,'assets/vendor/cjk');let chinese,japanese,sudachi,confusions;
+async function loadChinese(){return chinese||=(async()=>{const map=new Map();let total=0,max=1;for(const line of (await fs.readFile(path.join(root,'zh-dictionary.txt'),'utf8')).split('\n')){const [word,freq,pos]=line.split(' ');if(!word||!Number.isFinite(+freq))continue;map.set(word,{freq:+freq,pos});total+=+freq;max=Math.max(max,word.length);}return {map,total:Math.log(total),max};})();}
+async function loadJapanese(){return japanese||=new Promise((resolve,reject)=>require('./assets/vendor/cjk/kuromoji.cjs').builder({dicPath:path.join(root,'ja')}).build((e,t)=>e?reject(e):resolve(t)));}
+async function analyze(language,text){if(typeof text!=='string'||text.length>20000)throw Error('Analyze at most 20,000 characters at once.');
+ if(language==='ja'){sudachi||=require('./sudachi.cjs').SudachiDictionary.load(path.join(root,'system_core.dic'));return (await sudachi).analyze(text);}
+ if(language==='ja-IPADIC'){const engine=await loadJapanese();let offset=0;return engine.tokenize(text).map(t=>{const start=text.indexOf(t.surface_form,offset);offset=(start<0?offset:start)+t.surface_form.length;return {text:t.surface_form,start:offset-t.surface_form.length,end:offset,known:t.word_type==='KNOWN',pos:t.pos,reading:t.reading||'',base:t.basic_form==='*'?t.surface_form:t.basic_form};});}
+ if(!['zh-Hans','zh-Hant','zh'].includes(language))throw Error('Choose Chinese or Japanese.');
+ const db=await loadChinese(),result=[];const blocks=[...text.matchAll(/[\p{Script=Han}]+|[^\p{Script=Han}]+/gu)];
+ for(const block of blocks){const s=block[0],offset=block.index;if(!/^\p{Script=Han}/u.test(s)){result.push({text:s,start:offset,end:offset+s.length,known:true,pos:'Other',reading:'',base:s});continue;}
+ const score=Array(s.length+1).fill(-Infinity),next=Array(s.length);score[s.length]=0;
+ for(let i=s.length-1;i>=0;i--){const single=s.codePointAt(i)>65535?2:1;score[i]=-db.total+score[i+single];next[i]=i+single;for(let j=i+1;j<=Math.min(s.length,i+db.max);j++){const entry=db.map.get(s.slice(i,j));if(entry){const v=Math.log(entry.freq||1)-db.total+score[j];if(v>score[i]){score[i]=v;next[i]=j;}}}}
+ for(let i=0;i<s.length;){const end=next[i],word=s.slice(i,end),entry=db.map.get(word);result.push({text:word,start:offset+i,end:offset+end,known:!!entry,pos:entry?.pos||'Unknown',reading:'',base:word});i=end;}
+ }return result;
+}
+
+async function loadConfusions(){return confusions||=(async()=>{const map=new Map();for(const name of ['zh-same-pinyin.txt','zh-same-stroke.txt'])for(const line of (await fs.readFile(path.join(root,name),'utf8')).split('\n')){if(line.startsWith('#'))continue;const [ch,...rest]=line.split('\t');if(ch&&rest.length){const set=map.get(ch)||new Set();for(const c of rest.join(''))if(c.trim())set.add(c);map.set(ch,set);}}return map;})();}
+async function resources(language){if(language.startsWith('zh')){const db=await loadChinese(),similar=await loadConfusions();return {correct:word=>db.map.has(word),suggest:word=>{if([...word].length>24)return [];const candidates=new Map(),chars=[...word];for(let i=0;i<chars.length;i++)for(const c of similar.get(chars[i])||[]){const copy=chars.slice();copy[i]=c;const term=copy.join(''),entry=db.map.get(term);if(entry&&term!==word)candidates.set(term,entry.freq);}return [...candidates].sort((a,b)=>b[1]-a[1]).slice(0,8).map(x=>x[0]);}};}
+ if(language==='ja'){sudachi||=require('./sudachi.cjs').SudachiDictionary.load(path.join(root,'system_core.dic'));const db=await sudachi,lookup=word=>{const b=Buffer.from(word);return db.lookup(b).filter(x=>x.bytes===b.length);};return {correct:word=>lookup(word).length>0,suggest:word=>{if([...word].length>24)return [];const found=new Map(),add=t=>{if(t===word)return;for(const e of lookup(t))found.set(t,Math.min(found.get(t)??Infinity,e.cost));};add(word.normalize('NFKC'));add(word.replace(/[ぁ-ゖ]/g,c=>String.fromCharCode(c.charCodeAt(0)+96)));add(word.replace(/[ァ-ヶ]/g,c=>String.fromCharCode(c.charCodeAt(0)-96)));const chars=[...word],kana=[...'あいうえおかきくけこさしすせそたちつてとなにぬねのはひふへほまみむめもやゆよらりるれろわをんがぎぐげござじずぜぞだぢづでどばびぶべぼぱぴぷぺぽっゃゅょーアイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポッャュョ'];for(let i=0;i<chars.length;i++){add(chars.filter((_,j)=>j!==i).join(''));if(i+1<chars.length){const copy=chars.slice();[copy[i],copy[i+1]]=[copy[i+1],copy[i]];add(copy.join(''));}for(const c of kana){const copy=chars.slice();copy[i]=c;add(copy.join(''));}}return [...found].sort((a,b)=>a[1]-b[1]).slice(0,8).map(x=>x[0]);}};}
+ throw Error('Choose Chinese or Japanese.');
+}
+async function suggest(language,word){if(typeof word!=='string'||word.length>48)throw Error('Review a phrase of at most 24 characters.');return (await resources(language)).suggest(word);}
+module.exports={analyze,resources,suggest};

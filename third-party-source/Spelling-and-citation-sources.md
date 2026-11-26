@@ -1,0 +1,16 @@
+# Spelling and citation sources
+
+| Included source | Upstream revision and contents |
+| --- | --- |
+| `hunspell-1.6.2.tar.gz` | [Hunspell v1.6.2](https://github.com/hunspell/hunspell/tree/2730ad3d32d839f439ba7f286e3600cd9294a978). Includes the C++ spell checker, build files and original license texts. |
+| `hunspell-asm-4.0.2.tar.gz` | [hunspell-asm v4.0.2](https://github.com/kwonoj/hunspell-asm/tree/v4.0.2). Includes the TypeScript bindings, bootstrap script, dependency lock and MIT license. |
+| `hunspell-dict-ko-0.7.94.tar.gz` | [hunspell-dict-ko 0.7.94](https://github.com/spellcheck-ko/hunspell-dict-ko/tree/07c339220d92ce06ccbae62a345c7314a7e724ce). Includes the word data, dictionary generator, Makefile and component licenses. |
+| `citeproc-js-2.4.63-73bc1b44.tar.gz` | [citeproc-js at the published npm revision](https://github.com/Juris-M/citeproc-js/tree/73bc1b44bc7d54d0bfec4e070fd27f5efe024ff9). Includes the processor modules, assembled CommonJS source, build tools, tests and license. |
+
+The binding package pins its WebAssembly release to `fc6a952-200131`. That release's CI configuration selects Hunspell v1.6.2 and the Emscripten toolchain image `ojkwon/arch-emscripten:05fcce12-base`. The distributed Node and browser module files match the integrity-checked npm 4.0.2 package. [Upstream build configuration](https://github.com/kwonoj/docker-hunspell-wasm/blob/fc6a952fd11ae95f4bce4118c1b41f5bee3d91d1/.circleci/config.yml)
+
+To rebuild the WebAssembly modules, extract the Hunspell and binding archives. In the upstream Emscripten environment with GNU Autotools, run `bash build-hunspell-wasm.sh <hunspell-directory> <binding-directory>`. From the binding directory, run `npm ci --ignore-scripts`, `npm run build`, and `npm run build:lib` using the binding's supported Node toolchain. The included application-authored script implements the upstream compiler settings, exported API and filesystem access. The upstream Docker recipe has no declared license. [Original Docker recipe](https://github.com/kwonoj/docker-hunspell-wasm/tree/fc6a952fd11ae95f4bce4118c1b41f5bee3d91d1)
+
+The Korean data distributed in `dictionary-sources/dictionary-ko/` is the complete npm dictionary-ko 2.0.0 package, with the wrapper's MIT license alongside it. The shipped affix data identifies upstream generator version 0.7.94. Its license file describes GPL version 3 or later for the combined dictionary and the attribution and license terms for the component word data. [npm package](https://www.npmjs.com/package/dictionary-ko/v/2.0.0) · [Wrapper source and license](https://github.com/wooorm/dictionaries/tree/a7c018ca64fcb125cabbd5e4ab120b146b2fa0e8)
+
+The citation processor in `assets/vendor/writing.js` reports internal version 1.4.61. Its minified module matches the syntax structure, literals and member names of the published citeproc 2.4.63 CommonJS module after accounting for local variable renaming and the bundler's strict-mode directive. The assembled CommonJS file in the included source archive is byte-for-byte identical to the npm release. This application uses the processor under the AGPL version 3 option in its upstream license. [npm package](https://www.npmjs.com/package/citeproc/v/2.4.63) · [Upstream license](https://github.com/Juris-M/citeproc-js/blob/73bc1b44bc7d54d0bfec4e070fd27f5efe024ff9/LICENSE)

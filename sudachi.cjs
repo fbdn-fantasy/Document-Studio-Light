@@ -1,0 +1,23 @@
+'use strict';
+// Sudachi V1 binary format reader adapted from Sudachi 0.8.2 (Apache-2.0).
+// Copyright (c) 2021-2024 Works Applications Co., Ltd. See notices/Sudachi-LICENSE.
+// Application integration: prefix lookup and dictionary-cost segmentation. This
+// is not the Java Sudachi pipeline: input normalization and its plugins are not run.
+const fs=require('node:fs/promises');
+class Reader {
+ constructor(buffer,offset=0){this.b=buffer;this.p=offset;}
+ varint(){let n=0,m=1;for(let i=0;i<8;i++){const x=this.b[this.p++];if(x===undefined)throw Error('Truncated dictionary');n+=(x&127)*m;if(!(x&128))return n;m*=128;}throw Error('Invalid dictionary integer');}
+ text(){const n=this.varint(),p=this.p;this.p+=n;if(this.p>this.b.length)throw Error('Invalid dictionary string');return this.b.toString('utf8',p,this.p);}
+}
+class SudachiDictionary {
+ constructor(b){if(b.toString('ascii',0,16)!=='SudachiBinaryDic'||b.readBigUInt64LE(16)!==1n)throw Error('Unsupported Sudachi dictionary format');const r=new Reader(b,40);this.version=r.text();this.signature=r.text();r.text();this.indexed=r.varint();this.total=r.varint();const count=r.varint(),blocks={};for(let i=0;i<count;i++){const name=r.text(),start=r.varint(),length=r.varint();if(start+length>b.length)throw Error('Invalid dictionary block');blocks[name]=b.subarray(start,start+length);}for(const name of ['TrieIndex','WordPointers','Strings','Entries','POS','ConnMatrix'])if(!blocks[name])throw Error('Missing dictionary block '+name);this.blocks=blocks;this.left=blocks.ConnMatrix.readUInt16LE(0);this.right=blocks.ConnMatrix.readUInt16LE(2);this.pos=[];let p=2;for(let i=0;i<blocks.POS.readUInt16LE(0);i++){const parts=[];for(let j=0;j<6;j++){const n=blocks.POS.readUInt16LE(p);p+=2;parts.push(blocks.POS.toString('utf16le',p,p+n*2));p+=n*2;}this.pos.push(parts.filter(x=>x!=='*').join(' / '));}}
+ string(ptr){const base=ptr>>>27,add=Math.max(0,base-19),len=base-add+(((ptr&0x07ff0000)>>>(28-add))|((1<<12)>>>(13-add))),shift=Math.max(add-1,0),offset=(ptr&(0x07ffffff>>>shift))<<shift;return this.blocks.Strings.toString('utf16le',offset*2,(offset+len)*2);}
+ entry(id){const b=this.blocks.Entries,p=id*8;if(p+32>b.length)throw Error('Invalid word pointer');const baseId=b.readUInt32LE(p+20);return {id,left:b.readUInt16LE(p),right:b.readUInt16LE(p+2),cost:b.readInt16LE(p+4),pos:this.pos[b.readUInt16LE(p+6)]||'',head:this.string(b.readUInt32LE(p+8)),reading:this.string(b.readUInt32LE(p+12)),base:baseId&&baseId!==id&&baseId*8+12<=b.length?this.string(b.readUInt32LE(baseId*8+8)):this.string(b.readUInt32LE(p+8))};}
+ lookup(bytes,start=0){const trie=this.blocks.TrieIndex,unit=i=>i*4+4<=trie.length?trie.readUInt32LE(i*4):0,offset=u=>(u>>>10)<<((u&512)>>>6);let node=offset(unit(0));const out=[];for(let i=start;i<bytes.length;i++){node^=bytes[i];const u=unit(node);if((u&0x800000ff)!==bytes[i])break;node^=offset(u);if(u&256){const r=new Reader(this.blocks.WordPointers,unit(node)&0x7fffffff),count=r.varint();let id=0;for(let j=0;j<count;j++){id+=r.varint();out.push({...this.entry(id),bytes:i-start+1});}}}return out;}
+ connection(left,right){return left<this.left&&right<this.right?this.blocks.ConnMatrix.readInt16LE(4+2*(right*this.left+left)):0;}
+ analyze(text){const bytes=Buffer.from(text),positions=new Map();let bi=0,ci=0;for(const ch of text){positions.set(bi,ci);bi+=Buffer.byteLength(ch);ci+=ch.length;}positions.set(bi,ci);const ends=new Map([[0,[{score:0,right:0}]]]);for(const [start,charStart] of positions){const previous=ends.get(start);if(!previous||start===bytes.length)continue;const candidates=this.lookup(bytes,start).filter(c=>positions.has(start+c.bytes));if(!candidates.length){const ch=String.fromCodePoint(text.codePointAt(charStart));candidates.push({bytes:Buffer.byteLength(ch),head:ch,base:ch,reading:'',pos:/[\p{L}\p{N}]/u.test(ch)?'Unknown':'Symbol',cost:12000,left:0,right:0,unknown:true});}
+ for(const c of candidates){let best=null,score=Infinity;for(const prev of previous){const s=prev.score+c.cost+this.connection(c.left,prev.right);if(s<score){score=s;best=prev;}}const end=start+c.bytes,node={...c,start:charStart,end:positions.get(end),score,previous:best};const list=ends.get(end)||[];list.push(node);ends.set(end,list);}}
+ const final=ends.get(bytes.length)||[];let n=final.reduce((a,b)=>!a||b.score+this.connection(0,b.right)<a.score+this.connection(0,a.right)?b:a,null);const result=[];while(n?.previous){result.push({text:text.slice(n.start,n.end),start:n.start,end:n.end,known:!n.unknown||n.pos==='Symbol',pos:n.pos,reading:n.reading,base:n.base,source:'Sudachi core '+this.version});n=n.previous;}return result.reverse();}
+ static async load(file){return new SudachiDictionary(await fs.readFile(file));}
+}
+module.exports={SudachiDictionary};

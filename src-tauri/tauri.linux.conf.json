@@ -1,0 +1,7 @@
+{
+  "bundle": {
+    "resources": {
+      "../app-resources-linux/": "app-resources/"
+    }
+  }
+}

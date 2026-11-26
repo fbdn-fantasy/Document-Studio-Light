@@ -1,0 +1,224 @@
+/* Colors refer to the active application theme. Only editor chrome is styled here. */
+@media screen {
+  #toolbar:has(.ds-ribbon) {
+    display: block;
+    min-height: 0;
+    max-height: min(31vh, 240px);
+    overflow: auto;
+    padding: 8px 14px 7px;
+  }
+  #toolbar .ds-ribbon {
+    --action-size: 37px;
+    display: flex;
+    align-items: stretch;
+    flex-wrap: wrap;
+    gap: 10px 0;
+  }
+  .ds-ribbon {
+    --illustration-blue: #85bcf4;
+    --illustration-teal: #68cab5;
+    --illustration-amber: #e4b278;
+  }
+  :root[data-app-theme=light] .ds-ribbon {
+    --illustration-blue: #3267a8;
+    --illustration-teal: #19746b;
+    --illustration-amber: #92601f;
+  }
+  .ds-ribbon-group:is([aria-label="Documents"], [aria-label="Citations"], [aria-label="Manuscript"], [aria-label="Page elements"], [aria-label="Proofing"]) {
+    --ribbon-icon-accent: var(--illustration-blue);
+  }
+  .ds-ribbon-group:is([aria-label="Saving"], [aria-label="Media & tables"], [aria-label="Page surface"], [aria-label="Forms"], [aria-label="Workspace"]) {
+    --ribbon-icon-accent: var(--illustration-teal);
+  }
+  .ds-ribbon-group:is([aria-label="Output"], [aria-label="Math & codes"], [aria-label="Signatures"], [aria-label="Comments"], [aria-label="Notes"]) {
+    --ribbon-icon-accent: var(--illustration-amber);
+  }
+  .ds-ribbon-action[aria-pressed=true] {--ribbon-icon-accent: currentColor}
+  .ds-ribbon-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 3px;
+    min-width: 0;
+    max-width: 100%;
+    padding: 0 13px;
+    border-inline-start: 1px solid var(--border);
+  }
+  .ds-ribbon-group:first-child {padding-inline-start: 0; border-inline-start: none}
+  .ds-ribbon-group:last-child {padding-inline-end: 0}
+  .ds-ribbon-actions, .ds-ribbon-values {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2px;
+    max-width: 100%;
+  }
+  .ds-ribbon-values {gap: 8px; min-height: 26px}
+  .ds-ribbon-group:not(:has(.ds-ribbon-values)) > .ds-ribbon-actions {margin-block: auto}
+  .ds-ribbon-group:has(.ds-ribbon-values) .ds-ribbon-actions {margin-block-start: 1px}
+  .ds-group-name {
+    display: block;
+    margin-block-start: auto;
+    padding: 2px 3px 0;
+    color: var(--muted);
+    font: 600 10.5px/1.3 system-ui, sans-serif;
+    letter-spacing: .035em;
+  }
+  #toolbar .ds-ribbon-action, #toolbar label.ds-ribbon-color {
+    position: relative;
+    display: inline-grid;
+    place-items: center;
+    flex: 0 0 auto;
+    width: var(--action-size);
+    height: var(--action-size);
+    margin: 0;
+    padding: 4px;
+    background: transparent;
+    color: var(--text);
+    border: 1px solid transparent;
+    border-radius: 7px;
+    cursor: pointer;
+  }
+  #toolbar .ds-ribbon-action:hover, #toolbar .ds-ribbon-color:hover {
+    border-color: var(--ui-selected-border);
+    background-color: var(--ui-hover);
+  }
+  #toolbar .ds-ribbon-action:focus-visible, #toolbar .ds-ribbon-color:focus-within {
+    outline: 2px solid var(--ui-focus);
+    outline-offset: -1px;
+  }
+  .ds-ribbon-action > svg, .ds-ribbon-color > svg {
+    display: block;
+    width: 26px;
+    height: 26px;
+    flex: none;
+    pointer-events: none;
+  }
+  .ds-action-name {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  #toolbar .ds-ribbon-field {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 5px;
+    margin: 0;
+    color: var(--muted);
+    font: 500 11px/1.2 system-ui, sans-serif;
+  }
+  #toolbar .ds-ribbon-field :is(select, input[type=number]) {
+    height: 27px;
+    min-height: 0;
+    padding: 2px 5px;
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    background-color: var(--ui-input);
+    color: var(--text);
+    font: 500 12px/1.2 system-ui, sans-serif;
+    text-overflow: ellipsis;
+  }
+  #toolbar #font-family {width: 134px !important}
+  #toolbar #font-size {width: 47px}
+  #toolbar #text-style {width: 102px}
+  #toolbar #line-spacing {width: 64px}
+  #toolbar .ds-ribbon-color input[type=color] {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+  }
+  #toolbar .ds-ribbon-color::after {
+    position: absolute;
+    inset-block-end: 3px;
+    width: 19px;
+    height: 3px;
+    border: 1px solid var(--muted);
+    border-radius: 1px;
+    background: var(--swatch);
+    pointer-events: none;
+    content: '';
+  }
+  .ds-auto-toggle {padding: 5px 7px; border-radius: 5px; cursor: pointer}
+  .ds-auto-toggle:hover {background: var(--ui-hover)}
+  .ds-auto-toggle input {margin: 0; cursor: pointer}
+  .ds-ribbon-tooltip {
+    position: fixed;
+    z-index: 1000;
+    max-width: calc(100vw - 12px);
+    padding: 5px 9px;
+    border: 1px solid var(--ui-popover-border);
+    border-radius: 5px;
+    background: var(--ui-popover);
+    color: var(--text);
+    box-shadow: 0 3px 10px var(--ui-shadow);
+    font: 500 12px/1.4 system-ui, sans-serif;
+    pointer-events: none;
+  }
+  #dialog.ds-table-picker {
+    position: fixed;
+    inset: auto;
+    width: min(284px, calc(100vw - 12px));
+    max-height: calc(100vh - 12px);
+    margin: 0;
+    padding: 16px;
+    border: 1px solid var(--ui-popover-border);
+    border-radius: 10px;
+    background: var(--ui-popover);
+    box-shadow: 0 8px 30px var(--ui-shadow);
+  }
+  #dialog.ds-table-picker::backdrop {background: transparent}
+  .ds-table-picker h2 {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin: 0 0 11px;
+    font: 650 16px/1.3 system-ui, sans-serif;
+  }
+  .ds-table-dimensions {
+    color: var(--muted);
+    font: 550 12px/1.2 system-ui, sans-serif;
+    font-variant-numeric: tabular-nums;
+  }
+  .ds-table-grid {display: grid; gap: 3px; padding: 2px; border-radius: 3px; cursor: pointer}
+  .ds-table-grid:focus-visible {outline: 2px solid var(--ui-focus); outline-offset: 1px}
+  .ds-table-row {display: grid; grid-template-columns: repeat(8, minmax(0,1fr)); gap: 3px}
+  .ds-table-cell {
+    display: block;
+    height: 18px;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    background: var(--ui-input);
+  }
+  .ds-cell-filled {background: var(--ui-selected); border-color: var(--ui-selected-border)}
+  .ds-table-custom {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 10px;
+    border-top: 1px solid var(--border);
+  }
+  #dialog.ds-table-picker .ds-table-custom label {flex: 1; margin: 0; color: var(--muted); font: 500 12px/1.4 system-ui, sans-serif}
+  .ds-table-custom input {display: block; width: 100%; margin-top: 3px}
+  #dialog.ds-table-picker #table-error {margin: 5px 0; color: var(--ui-danger); font-size: 12px}
+  #dialog.ds-table-picker #table-error:empty {display: none}
+  .ds-table-picker .dialog-actions {margin-top: 14px}
+}
+@media screen and (max-width: 1050px) {
+  #toolbar:has(.ds-ribbon) {padding-inline: 9px}
+  #toolbar .ds-ribbon {--action-size: 34px}
+  .ds-ribbon-group {padding-inline: 8px}
+  .ds-ribbon-action > svg, .ds-ribbon-color > svg {width: 24px; height: 24px}
+}
+@media print {
+  .ds-ribbon-tooltip, #dialog.ds-table-picker {display: none !important}
+}

@@ -1,0 +1,433 @@
+[
+  {
+    "package": "@babel/runtime-7.29.13",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/117da2af0d4ce0fe1c8e19b5cff9dcd806adf973d328d27b11d4448c4ff24f76.txt"
+    }
+  },
+  {
+    "package": "@jridgewell/gen-mapping-0.3.13",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/769d154fbde32a915af110b1123650bc79f4cbe675acc66e005265bf069c6c6c.txt"
+    }
+  },
+  {
+    "package": "@jridgewell/remapping-2.3.5",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/769d154fbde32a915af110b1123650bc79f4cbe675acc66e005265bf069c6c6c.txt"
+    }
+  },
+  {
+    "package": "@jridgewell/resolve-uri-3.1.3",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/b8778b155bfde5a28b023a558753c0fa058a52bb9de35c343c250be1bbcdedab.txt"
+    }
+  },
+  {
+    "package": "@jridgewell/sourcemap-codec-1.6.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/769d154fbde32a915af110b1123650bc79f4cbe675acc66e005265bf069c6c6c.txt"
+    }
+  },
+  {
+    "package": "@jridgewell/trace-mapping-0.3.31",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/769d154fbde32a915af110b1123650bc79f4cbe675acc66e005265bf069c6c6c.txt"
+    }
+  },
+  {
+    "package": "@sveltejs/acorn-typescript-1.0.13",
+    "license": "MIT",
+    "files": {
+      "LICENSE.md": "texts/54e58ba168330ad6c315813fd50e729b2748d1ed38314fd30b833a4e89e15f2a.txt"
+    }
+  },
+  {
+    "package": "@tauri-apps/api-2.12.4",
+    "license": "Apache-2.0 OR MIT",
+    "files": {
+      "LICENSE-APACHE-2.0": "texts/0d542e0c8804e39aa7f37eb00da5a762149dc682d7829451287e11b938e94594.txt",
+      "LICENSE-MIT": "texts/9dd42ea92cff2ede5cd477cbfcce051b2d0115c0ac7f368ee88cb545055dff1d.txt",
+      "LICENSE.spdx": "texts/5e834fe9788c524210deda859c46a550ffa5aa0cba9ea0572f0d81120e97c008.txt"
+    }
+  },
+  {
+    "package": "@types/estree-1.0.10",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383.txt"
+    }
+  },
+  {
+    "package": "@types/pako-2.0.4",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383.txt"
+    }
+  },
+  {
+    "package": "@types/raf-3.4.3",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383.txt"
+    }
+  },
+  {
+    "package": "@types/trusted-types-2.0.7",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383.txt"
+    }
+  },
+  {
+    "package": "acorn-8.19.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/76a876cf886ff9be2a8b5e2e86514fed06223c8c9f0c1e9ee9606e93841e00b7.txt"
+    }
+  },
+  {
+    "package": "aria-query-5.3.1",
+    "license": "Apache-2.0",
+    "files": {
+      "LICENSE": "texts/c8df456c7ccba74b959087dff494d4ac2a12dfb0400c08b46b2494a08a000567.txt"
+    }
+  },
+  {
+    "package": "axobject-query-4.1.0",
+    "license": "Apache-2.0",
+    "files": {
+      "LICENSE": "texts/c8df456c7ccba74b959087dff494d4ac2a12dfb0400c08b46b2494a08a000567.txt"
+    }
+  },
+  {
+    "package": "base64-arraybuffer-1.0.2",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/f3eca6ff762533fa5a77caf954a143e48afa204668cf97dce758c45a9e006be3.txt"
+    }
+  },
+  {
+    "package": "canvg-3.0.11",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/86622ffc909487e6029235d31503263b796895679b0926f4a4d6f02d2623fde0.txt"
+    }
+  },
+  {
+    "package": "clsx-2.1.1",
+    "license": "MIT",
+    "files": {
+      "license": "texts/9a9edad7baae52622bddf3c15b2ef8a33d2c89f2d25408ad13e8a7481c6b0c97.txt"
+    }
+  },
+  {
+    "package": "core-js-3.51.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/b87653fff2d44426ab5cd4723cee3b1364dc8d35a0acdf098c54689543123bf8.txt"
+    }
+  },
+  {
+    "package": "css-line-break-2.1.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/ce1ee0539f7fe1f7b75b76d121e674cb897c709c3e24ddba7f9a10fe2d0d88a5.txt"
+    }
+  },
+  {
+    "package": "devalue-5.9.4",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/e399db7e952e45cae84f1b53d72ba8dbad2daaa7ab8cd1f0ab72fea5ab73b225.txt"
+    }
+  },
+  {
+    "package": "dictionary-de-3.0.0",
+    "license": "(GPL-2.0 OR GPL-3.0)",
+    "files": {
+      "license": "texts/03abf202c6e207d41f054083cafccbb174a30f6b330ea8dba3aeef0a279cb83e.txt"
+    }
+  },
+  {
+    "package": "dictionary-en-4.0.0",
+    "license": "(MIT AND BSD)",
+    "files": {
+      "license": "texts/2a7e8d8ae9e8facc84818546ae2a8d83aec5e9c80a675ff789acd1c338b53b3d.txt"
+    }
+  },
+  {
+    "package": "dictionary-en-gb-3.0.0",
+    "license": "(MIT AND BSD)",
+    "files": {
+      "license": "texts/81b644347b40804c25811267efbea024a30b2bb1642fefa9c9c50f7b0bbcb67f.txt"
+    }
+  },
+  {
+    "package": "dictionary-es-4.0.0",
+    "license": "(GPL-3.0 OR LGPL-3.0 OR MPL-1.1)",
+    "files": {
+      "license": "texts/a21581497f07b5e550e438d26890ea2b1704492357de67740613bd589b1c652a.txt"
+    }
+  },
+  {
+    "package": "dictionary-fr-3.0.0",
+    "license": "MPL-2.0",
+    "files": {
+      "license": "texts/0c785aebc7aae8aa00b8163e9b3219a8785a9900b71e85475204e48a5651ced4.txt"
+    }
+  },
+  {
+    "package": "dictionary-ko-2.0.0",
+    "license": "(GPL-2.0 OR LGPL-2.1 OR MPL-1.1)",
+    "files": {
+      "license": "texts/3e81dd90f6d8877ccb2ed2b262ce72ee8a6ccf3a21179a8949abf0d85ac7fda0.txt"
+    }
+  },
+  {
+    "package": "dictionary-nl-2.0.0",
+    "license": "(BSD-3-Clause OR CC-BY-3.0)",
+    "files": {
+      "license": "texts/fd9e95c360245eab3c388885062820754785faa4123964994cfdecb950b71948.txt"
+    }
+  },
+  {
+    "package": "dictionary-ru-3.0.0",
+    "license": "BSD-3-Clause",
+    "files": {
+      "license": "texts/262af2f6ad70a61e5ee1332ff44fa8ee50edca819cf33207d8ad6ba6a0c9be52.txt"
+    }
+  },
+  {
+    "package": "dompurify-3.4.17",
+    "license": "(MPL-2.0 OR Apache-2.0)",
+    "files": {
+      "LICENSE": "texts/cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30.txt",
+      "LICENSE-MPL": "texts/fab3dd6bdab226f1c08630b1dd917e11fcb4ec5e1e020e2c16f83a0a13863e85.txt"
+    }
+  },
+  {
+    "package": "emscripten-wasm-loader-3.0.3",
+    "license": "MIT",
+    "files": {
+      "package.json declaration and standard MIT terms": "texts/a8f5e3de0af2b344ec12bfee2f6e9d74c2ae818b0344b42c7b5a34d9f7d91f93.txt"
+    }
+  },
+  {
+    "package": "esm-env-1.2.2",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/6df5276ee7531fcc5446f19082c12e77bb6c5f081fd2b6d6cf88180a5ee36acd.txt"
+    }
+  },
+  {
+    "package": "esrap-2.4.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/8f8f0696ab4041a885d28bddf82e2ad673a6522cb644d6f972237f4f6e172a1d.txt"
+    }
+  },
+  {
+    "package": "fast-png-6.4.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/47ec9747cf2c470a505fcb20f3ec2ff2e60ea4febaf2e1e7041a24fc369fac3c.txt"
+    }
+  },
+  {
+    "package": "fflate-0.8.3",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/0a1df3a083d0c010560aa342e87959c8c1070e6fd54545741f083f22d0c8b551.txt"
+    }
+  },
+  {
+    "package": "getroot-1.0.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/344a8d323101396c827b9d3a6314554a6aad476221c12f508e89a4edfbc50e51.txt"
+    }
+  },
+  {
+    "package": "tslib-1.14.1",
+    "license": "0BSD",
+    "files": {
+      "CopyrightNotice.txt": "texts/dd835e67a9a297da32f9467d7677a5d02c8e50e10f15da43b810147c79c04b9b.txt",
+      "LICENSE.txt": "texts/210b19e543130388c68654b7497e967119ce17145f66ab7d85688fbd70f08751.txt"
+    }
+  },
+  {
+    "package": "html2canvas-1.4.1",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/86200ce4e92d9a22c41c8647a55f7a5fddff304ff89b4d36ecc699ed8c123d2c.txt"
+    }
+  },
+  {
+    "package": "hunspell-asm-4.0.2",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/344a8d323101396c827b9d3a6314554a6aad476221c12f508e89a4edfbc50e51.txt"
+    }
+  },
+  {
+    "package": "iobuffer-5.4.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/1c22118fd112e8c394a5ec0598d2e2dfcdc19b3e1055ac3eaccdb2522b777335.txt"
+    }
+  },
+  {
+    "package": "is-buffer-2.0.5",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/c7cc929b57080f4b9d0c6cf57669f0463fc5b39906344dfc8d3bc43426b30eac.txt"
+    }
+  },
+  {
+    "package": "is-reference-3.0.3",
+    "license": "MIT",
+    "files": {
+      "package.json declaration and standard MIT terms": "texts/bbc45b10bc445c2c0c1d72b5fbc755a494d7c23db615ad86b6b8c7401fb68d14.txt"
+    }
+  },
+  {
+    "package": "jspdf-3.0.4",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/dc388ec35ff463288cdde3588a36fd4ed12a45deff053243b37309acc9ef583b.txt"
+    }
+  },
+  {
+    "package": "locate-character-3.0.0",
+    "license": "MIT",
+    "files": {
+      "package.json declaration and standard MIT terms": "texts/31905a94197512d5222d1c30388430ab9827b1bd3fa2bfd616786dfdfaf89b67.txt"
+    }
+  },
+  {
+    "package": "magic-string-0.30.21",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/1cbe51b907662f6cb1492b16c359384a595180bf0e4d101603ed525e75c4e484.txt"
+    }
+  },
+  {
+    "package": "nanoid-2.1.11",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/da4db1480d9beea3483a2eda5c53b22238d0827d57da162b48f122e04d2d9987.txt"
+    }
+  },
+  {
+    "package": "normalize-path-2.1.1",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/f4a48aa8354a257785aa534bab2ac5ff2c2a98cd59cdf4a637bb68ee185683f7.txt"
+    }
+  },
+  {
+    "package": "nspell-2.1.5",
+    "license": "MIT",
+    "files": {
+      "license": "texts/ca4662cb5d1b738fbe5350c0d5485ba11773b4b7208974082ae6e129a52d631d.txt"
+    }
+  },
+  {
+    "package": "pako-2.2.0",
+    "license": "(MIT AND Zlib)",
+    "files": {
+      "LICENSE": "texts/a04665b3b2de56c66730c1f720f528175739e4104f79073614aa611da1e85539.txt"
+    }
+  },
+  {
+    "package": "performance-now-2.1.0",
+    "license": "MIT",
+    "files": {
+      "license.txt": "texts/c3af1272f30870168177e888b184c1f802e5081e75a126c794670c0b562d3783.txt"
+    }
+  },
+  {
+    "package": "raf-3.4.1",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/6b2194e178545b3dcde4a40a09b5f6c00bd9b5b695db0c826c14995c6c9b4ec5.txt"
+    }
+  },
+  {
+    "package": "regenerator-runtime-0.13.11",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/51887a3d47051ac2fce1210562e5b9fe0830a8a8fabeb272c2d586eeb18a05fd.txt"
+    }
+  },
+  {
+    "package": "remove-trailing-separator-1.1.0",
+    "license": "ISC",
+    "files": {
+      "license": "texts/aff6a0eab5763020fd4b179927f918152be1f9b6bfec360cffda972e6adf73e7.txt"
+    }
+  },
+  {
+    "package": "rgbcolor-1.0.1",
+    "license": "MIT OR SEE LICENSE IN FEEL-FREE.md",
+    "files": {
+      "LICENSE.md": "texts/86045408b01f66f9319a2fe7bc7f7e115f272956ac44d2d840fc00127124a78c.txt"
+    }
+  },
+  {
+    "package": "stackblur-canvas-2.7.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE-MIT.txt": "texts/609e3755e6e7a048b8ca85de25233cfc4f62ec7cb9afeea603269a03b73db197.txt"
+    }
+  },
+  {
+    "package": "svelte-5.57.3",
+    "license": "MIT",
+    "files": {
+      "LICENSE.md": "texts/06257f4847b13a49a039efb17b944c141e71b12fd8d231b362d86919067d77a3.txt"
+    }
+  },
+  {
+    "package": "svg-pathdata-6.0.3",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/cd05e8e2516f46a2cd79494bbabdea76f874e8d049dbc19a76b367534a4e013e.txt"
+    }
+  },
+  {
+    "package": "text-segmentation-1.0.3",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/8b00952cd8d0f5cbbefb13576778e1185dc963943151353d90c4e14a5a4caf40.txt"
+    }
+  },
+  {
+    "package": "unixify-1.0.0",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/768ad4389c32b8043e2716b25f85a18943613fce0b1a0fecd2f42a24a7ca6a1e.txt"
+    }
+  },
+  {
+    "package": "utrie-1.0.2",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/8b00952cd8d0f5cbbefb13576778e1185dc963943151353d90c4e14a5a4caf40.txt"
+    }
+  },
+  {
+    "package": "zimmerframe-1.1.5",
+    "license": "MIT",
+    "files": {
+      "LICENSE": "texts/5fde0201805ca0ffc8884fac6a3447b7f2918a6c22efb68b94019298d16bad9e.txt"
+    }
+  }
+]

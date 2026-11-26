@@ -1,0 +1,39 @@
+{
+  "name": "document-studio-light",
+  "version": "1.0.2",
+  "private": true,
+  "scripts": {
+    "postinstall": "node scripts/restore-large-files.cjs",
+    "dev": "vite --host 127.0.0.1",
+    "build": "svelte-check --tsconfig ./tsconfig.json && vite build",
+    "tauri": "tauri",
+    "dist:linux": "bash scripts/build-linux.sh",
+    "dist:windows": "python scripts/build-windows.py",
+    "test": "node --test scripts/test-service.cjs \"test/*.test.cjs\""
+  },
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "dictionary-de": "3.0.0",
+    "dictionary-en": "4.0.0",
+    "dictionary-en-gb": "3.0.0",
+    "dictionary-es": "4.0.0",
+    "dictionary-fr": "3.0.0",
+    "dictionary-ko": "2.0.0",
+    "dictionary-nl": "2.0.0",
+    "dictionary-ru": "3.0.0",
+    "hunspell-asm": "4.0.2",
+    "jspdf": "^3",
+    "nspell": "2.1.5",
+    "svelte": "^5"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^6",
+    "@tauri-apps/cli": "^2",
+    "@types/node": "^24",
+    "playwright": "1.65.0",
+    "svelte-check": "^4",
+    "typescript": "^5",
+    "vite": "^7"
+  },
+  "license": "AGPL-3.0-only"
+}

@@ -1,0 +1,14 @@
+'use strict';
+(()=>{
+ const P=FTEPro,E=FTEProCore.escape;let fileInfo={path:'',name:''};
+ async function info(){if(window.desktop?.documentInfo)try{fileInfo=await desktop.documentInfo();refresh();}catch{}}
+ function value(kind,node){const m=P.data().metadata||{},sheets=[...pages.children],page=node?sheets.indexOf(node.closest('.sheet'))+Number(extra.startNumber||1):1;
+  switch(kind){case'Date':return new Date().toLocaleDateString();case'Time':return new Date().toLocaleTimeString();case'Creation date':return new Date(P.data().createdAt||Date.now()).toLocaleString();case'Last modified date':return new Date(P.data().modifiedAt||P.data().createdAt||Date.now()).toLocaleString();case'Author':return m.author||'';case'Document title':return $('doc-name').value;case'File name':return fileInfo.name||$('doc-name').value;case'File path':return fileInfo.path||'[Not saved]';case'Page number':return String(page);case'Total page count':return String(sheets.length);case'Page range':return Number(extra.startNumber||1)+'–'+(sheets.length+Number(extra.startNumber||1)-1);case'Chapter number':return String(Math.max(1,(extra.chapters||[]).findIndex(c=>c.id===extra.activeChapter)+1));case'Section number':{let section=0;for(const n of pages.querySelectorAll('h1,[data-pro-field-value]')){if(n===node)break;if(n.tagName==='H1')section++;}return String(Math.max(1,section));}default:return String(m.custom?.[kind]??'');}
+ }
+ function refresh(){for(const n of pages.querySelectorAll('[data-pro-field-value]'))n.textContent=value(n.dataset.proFieldValue,n);}
+ const command=P.commands.find(c=>c.name==='Document field');command.fn=async()=>{await info();P.form('Insert document field',[['kind','Field','select','Date',['Date','Time','Creation date','Last modified date','Author','Document title','File name','File path','Page number','Total page count','Page range','Section number','Chapter number',...Object.keys(P.data().metadata?.custom||{})]],['dynamic','Automatically update','checkbox',true]],v=>{P.data().createdAt||=new Date().toISOString();insertHTML(v.dynamic?'<span data-pro-field-value="'+E(v.kind)+'">'+E(value(v.kind))+'</span>':E(value(v.kind)));});};command.button.onclick=command.fn;
+ const old=layout;layout=function(...args){const result=old(...args);refresh();return result;};const load=loadState;loadState=function(...args){const r=load(...args);P.data().createdAt||=new Date().toISOString();refresh();info();return r;};
+ const check=checkpoint;checkpoint=function(...args){P.data().createdAt||=new Date().toISOString();P.data().modifiedAt=new Date().toISOString();refresh();return check(...args);};
+ setInterval(()=>{if(document.querySelector('dialog[open]')||window.FTEBatchBusy)return;if(pages.querySelector('[data-pro-field-value="File path"],[data-pro-field-value="File name"]'))info();if(pages.querySelector('[data-pro-field-value="Time"]'))refresh();},5000);
+ P.fields={value,refresh};
+})();

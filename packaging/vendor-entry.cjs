@@ -1,0 +1,2 @@
+window.FTEHyphens={"en-us":require("hyphen/en-us").hyphenateSync,"en-gb":require("hyphen/en-gb").hyphenateSync,"de":require("hyphen/de").hyphenateSync,"fr":require("hyphen/fr").hyphenateSync,"es":require("hyphen/es").hyphenateSync,"nl":require("hyphen/nl").hyphenateSync,"ru":require("hyphen/ru").hyphenateSync};window.FTECite=require('@citation-js/core').Cite;window.FTECitationPlugins=require('@citation-js/core').plugins;require('@citation-js/plugin-csl');require('@citation-js/plugin-bibtex');require('@citation-js/plugin-ris');
+window.FTECSL=require('citeproc');

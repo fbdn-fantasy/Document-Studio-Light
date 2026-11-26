@@ -1,0 +1,12 @@
+Document Studio Light for Linux x86_64
+
+The archive contains the compiled editor, document-import tools and dictionaries.
+It requires glibc @MIN_GLIBC@ or later, GTK 3, WebKitGTK 4.1, D-Bus, OpenSSL 3,
+fontconfig and their system dependencies. The RPM and DEB declare their system dependencies.
+
+In the extracted directory, run sudo ./install.sh to install system-wide.
+Run ./install.sh "$HOME/.local" to install for your own account.
+Start Document Studio Light from the applications menu or run document-studio-light.
+The application menu launches the installed executable directly. For a custom
+prefix, include its share directory in XDG_DATA_DIRS. To upgrade, run the newer
+archive's install.sh with the same prefix.

@@ -1,0 +1,29 @@
+{
+  "chunkSize": 50331648,
+  "files": [
+    {
+      "path": "assets/vendor/cjk/system_core.dic",
+      "size": 202236003,
+      "mode": 420,
+      "sha256": "e815659f6ad6f6118725103d47d317d660276ff3a15f668f8fc123ec3c4e6646",
+      "parts": [
+        "411a1e1fb86bc32e4f38d00455f852dc0521c015f4361ae781cff6f9ba52cd0b",
+        "18b11c2256c41c7f442c4b4f9d0e0d538fa71ef95641e35da67300b4eba87009",
+        "b7cf847a704398231e8951e1dcc2e658a00e6cdbe57fba2713ee4cc2bcc1050e",
+        "9d41bdd01fd12b30bfd955aa1cf00fa3c8a0f0f917a39771e6c59e2a82ddfc11",
+        "03e5b61bc24ed978e48611004d27cf8d62fec73cc3876ccae035e0e7cbf5e840"
+      ]
+    },
+    {
+      "path": "node-linux/bin/node",
+      "size": 124909296,
+      "mode": 493,
+      "sha256": "2f822d544601dfff107f57d945b649d15c5bf6302595735a6bd9cdc7ee9669bd",
+      "parts": [
+        "24dd125b8c491f1075c4817090fdc0ff9362dc1b4adcea8cd9fec509d24c23fb",
+        "5d4b13f78e78b6b37401e3958868988f74e09f548d05e55787340a54f8d44228",
+        "014325078e366a7bdf41ac20f0ec575ab32b59f621fcd47e5b0b9fb7b8997ce5"
+      ]
+    }
+  ]
+}

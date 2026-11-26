@@ -1,0 +1,4 @@
+const{test}=require('node:test'),assert=require('node:assert/strict'),C=require('../pro-core');
+test('CSV quoted commas, escaped quotes, multiline values and BOM',()=>{const x=C.parseCSV('\uFEFFName,Note\r\n"A, B","line 1\nline ""2"""\r\nC,ok');assert.deepEqual(x.rows,[{Name:'A, B',Note:'line 1\nline "2"'},{Name:'C',Note:'ok'}]);});
+test('CSV rejects malformed rows and headers',()=>{for(const s of ['A,A\nx,y','A,B\nx','A\n"unclosed','A\n"x"oops'])assert.throws(()=>C.parseCSV(s));});
+test('variables preserve literal dollar strings and require exact keys',()=>{assert.equal(C.interpolate('Hello {{Name}}', {Name:'$& <script>'}),'Hello $& <script>');assert.throws(()=>C.interpolate('{{Missing}}',{}));assert.equal(C.interpolate('{{Missing}}',{},false),'{{Missing}}');assert.equal(C.condition('yes','equals','yes'),true);assert.equal(C.condition('','not empty',''),false);});

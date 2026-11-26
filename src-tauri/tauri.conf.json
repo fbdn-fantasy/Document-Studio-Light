@@ -1,0 +1,85 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "productName": "Document Studio Light",
+  "mainBinaryName": "Document-Studio-Light-V1.0.2",
+  "version": "1.0.2",
+  "identifier": "com.forbiddenfantasy.DocumentStudioLight",
+  "build": {
+    "beforeBuildCommand": "npm run build",
+    "beforeDevCommand": "npm run dev",
+    "devUrl": "http://localhost:1420",
+    "frontendDist": "../dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "Document Studio Light",
+        "width": 1280,
+        "height": 850,
+        "minWidth": 900,
+        "minHeight": 650,
+        "visible": false,
+        "resizable": true
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self' data: blob:; script-src 'self' 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob:; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self' data:; connect-src 'self' ipc: http://ipc.localhost data: blob:; frame-src 'self' blob:; object-src 'none'; base-uri 'self'"
+    },
+    "enableGTKAppId": true
+  },
+  "bundle": {
+    "active": true,
+    "targets": [
+      "deb",
+      "rpm",
+      "nsis"
+    ],
+    "category": "Productivity",
+    "shortDescription": "Offline document editor with DOCX and multilingual writing tools",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.ico"
+    ],
+    "linux": {
+      "rpm": {
+        "depends": [
+          "webkit2gtk4.1",
+          "gtk3",
+          "libappindicator-gtk3",
+          "openssl-libs",
+          "fontconfig",
+          "libglvnd-glx",
+          "glib2",
+          "glibc",
+          "libstdc++",
+          "libgcc",
+          "libgomp",
+          "zlib-ng-compat",
+          "libX11",
+          "libXext",
+          "libxcb"
+        ]
+      }
+    },
+    "windows": {
+      "webviewInstallMode": {
+        "type": "embedBootstrapper",
+        "silent": true
+      },
+      "nsis": {
+        "displayLanguageSelector": false,
+        "installMode": "currentUser",
+        "compression": "lzma",
+        "startMenuFolder": "Document Studio Light",
+        "installerIcon": "icons/icon.ico"
+      }
+    },
+    "licenseFile": "../LICENSE",
+    "license": "AGPL-3.0-only",
+    "publisher": "Forbidden_Fantasy",
+    "copyright": "Copyright 2026 Forbidden_Fantasy"
+  }
+}

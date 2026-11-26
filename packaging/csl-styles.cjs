@@ -1,0 +1,1 @@
+const fs=require('fs');let js='';for(const name of ['mla','chicago','ieee'])js+='FTECitationPlugins.config.get("@csl").styles.add('+JSON.stringify(name)+','+JSON.stringify(fs.readFileSync('assets/vendor/csl/'+name+'.csl','utf8'))+');\n';fs.writeFileSync('assets/vendor/csl/styles.js',js);

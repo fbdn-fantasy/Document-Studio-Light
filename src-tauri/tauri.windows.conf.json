@@ -1,0 +1,12 @@
+{
+  "bundle": {
+    "resources": {
+      "../app-resources-windows/": "app-resources/"
+    },
+    "windows": {
+      "nsis": {
+        "template": "windows/installer.nsi"
+      }
+    }
+  }
+}

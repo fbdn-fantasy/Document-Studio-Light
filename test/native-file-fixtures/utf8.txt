@@ -1,0 +1,2 @@
+Native UTF-8 résumé and science Ω.
+Normal file bytes must stay intact.
